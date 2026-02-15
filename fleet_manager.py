@@ -26,11 +26,11 @@ def init_database():
     ]
 
     ids = [
-        "C 386-249 SP",
-        "SP 937-215",
-        "S 179-276 SP"
-        "SC 937-0176 CEC"
-        "S 496-828 SP"
+        "1000",
+        "1001",
+        "1002",
+        "1003",
+        "1004"
     ]
     
     return names, ranks, divs, ids
@@ -81,5 +81,20 @@ def add_member(names, ranks, divs, ids):
     
     print("Crew member added")
 
+def remove_member(names, ranks, divs, ids):
+    remove_id = input("Enter ID to remove: ")
+
+    if remove_id not in ids:
+        print("ID not found")
+        return
+    
+    index = ids.index(remove_id)
+
+    names.pop(index)
+    ranks.pop(index)
+    divs.pop(index)
+    ids.pop(index)
+
+    print("Member removed")
     
 
