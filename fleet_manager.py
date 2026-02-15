@@ -44,6 +44,10 @@ def display_menu():
     print("3. Update ranks")
     print("4. Display roster")
     print("5. Exit")
+    print("6. Search Crew")
+    print("7. Filter by division")
+    print("8. Payroll Calculator")
+    print("9. Senior officer count")
 
     choice = input("Choose an option (1-5): ")
     if choice.isdigit():
@@ -117,27 +121,6 @@ def display_roster(names, ranks, divs, ids):
     for i in range(len(names)):
         print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
 
-def main():
-    names, ranks, divs, ids = init_database()
-
-    while True:
-        choice = display_menu()
-
-        if choice == 1:
-            add_member(names, ranks, divs, ids)
-        elif choice == 2:
-            remove_member(names, ranks, divs, ids)
-        elif choice == 3:
-            update_rank(names, ranks, divs, ids)
-        elif choice == 4:
-            display_roster(names, ranks, divs, ids)
-        elif choice == 5:
-            print("Exiting")
-            break
-        else:
-            print("Choice not valid")
-    
-main()
 
 def search_crew(names, ranks, divs, ids):
     term = input("Enter search term: ").lower()
@@ -169,9 +152,57 @@ def filter_by_division(names, ranks, divs, ids):
     if not found:
         print("No crew members in division")
 
+def calculate_payroll(ranks):
+    credits = {
+        "Captain": 1000,
+        "Admiral": 2000,
+        "Commander": 500,
+        "Ambassador": 200
+    }
 
+    total = 0
+    for rank in ranks:
+        total += credits.get(rank, 0)
+    print(f"/nTotal fleet payroll: {total} credits")
+    return total
 
+def count_senior_officers(ranks):
+    count = 0
+    for rank in ranks:
+        if rank == "Captain" or rank == "Commander":
+            count += 1 
+    return count
 
+def main():
+    names, ranks, divs, ids = init_database()
+
+    while True:
+        choice = display_menu()
+
+        if choice == 1:
+            add_member(names, ranks, divs, ids)
+        elif choice == 2:
+            remove_member(names, ranks, divs, ids)
+        elif choice == 3:
+            update_rank(names, ranks, divs, ids)
+        elif choice == 4:
+            display_roster(names, ranks, divs, ids)
+        elif choice == 5:
+            print("Exiting")
+        elif choice == 6:
+            search_crew(names, ranks, divs, ids)
+        elif choice == 7:
+            filter_by_division(names, ranks, divs, ids)
+        elif choice == 8:
+            calculate_payroll(names, ranks, divs, ids)
+        elif choice == 9:
+            count = count_senior_officers(ranks)
+            print(f"Captains and commanders: {count}")
+            break
+        else:
+            print("Choice not valid")
+            break
+main()
 
 
 
