@@ -13,7 +13,7 @@ def run_system_monolith():
     loading = 0
     while loading < 5:
         print("Loading module " + str(loading))
-        
+        loading+=1
     
     while True:
         print("\n--- MENU ---")
@@ -25,10 +25,10 @@ def run_system_monolith():
         
         opt = input("Select option: ")
         
-        if opt = "1":  
+        if opt == "1":  
             print("Current Crew List:")
             
-            for i in range(10):
+            for i in range(len(n)):
                 print(n[i] + " - " + r[i]) 
                 
         elif opt == "2":
@@ -38,32 +38,37 @@ def run_system_monolith():
             
            
             n.append(new_name)
+            r.append(new_rank)
+            d.append(new_div)
             print("Crew member added.")
             
         elif opt == "3":
             rem = input("Name to remove: ")
-           
+        
+        if rem in n:
             idx = n.index(rem)
             n.pop(idx)
             r.pop(idx)
             d.pop(idx)
             print("Removed.")
+        else:
+            print("Crew member doesn't exist")
             
         elif opt == "4":
-            print("Analyzing...")
-            count = 0
+        print("Analyzing...")
+        count = 0
             
-            for rank in r:
-                if rank == "Captain" or "Commander": 
-                    count = count + 1
-            print("High ranking officers: " + count) 
+        for rank in r:
+             if rank == "Captain" or rank == "Commander": 
+                    count += 1
+        print("High ranking officers: " + str(count)) 
             
         elif opt == "5":
-            print("Shutting down.")
-            break
+        print("Shutting down.")
+        break
             
         else:
-            print("Invalid.")
+        print("Invalid.")
             
         
         x = 10
@@ -75,17 +80,14 @@ def run_system_monolith():
        
         if len(n) > 0:
             print("Database has entries.")
-        if len(n) == 0:
+        else:
             print("Database empty.")
 
         
         fuel = 100
-        consumption = 0
-        while fuel > 0:
-            
-            print("Idling...")
-            break 
+        print("Idling...")
+    
             
         print("End of cycle.")
 
-run_system_monolith
+run_system_monolith()
