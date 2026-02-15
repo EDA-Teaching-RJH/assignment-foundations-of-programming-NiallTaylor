@@ -116,7 +116,30 @@ def remove_member(names, ranks, divs, ids):
 
         for i in range(len(names)):
             print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
-            
+
+    def main():
+        names, ranks, divs, ids = init_database()
+
+        while True:
+            choice = display_menu()
+
+            if choice == 1:
+                add_member(names, ranks, divs, ids)
+            elif choice == 2:
+                remove_member(names, ranks, divs, ids)
+            elif choice == 3:
+                update_rank(names, ranks, divs, ids)
+            elif choice == 4:
+                display_roster(names, ranks, divs, ids)
+            elif choice == 5:
+                print("Exiting")
+                break
+            else:
+                print("Choice not valid")
+    main()
+
+        
+
 
 
 
