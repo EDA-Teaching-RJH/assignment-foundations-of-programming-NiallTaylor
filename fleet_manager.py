@@ -38,7 +38,7 @@ def init_database():
 def display_menu():
     user = input("Enter your name: ")
 
-    print("/nWelcome,", user)
+    print("Welcome,", user)
     print("1. Add crew member")
     print("2. Remove crew member")
     print("3. Update ranks")
@@ -56,7 +56,7 @@ def display_menu():
         return 0
 
 def add_member(names, ranks, divs, ids):
-    new_id = input("ENter ID: ")
+    new_id = input("Enter ID: ")
 
     if new_id in ids:
         print("ID exists already")
@@ -116,10 +116,10 @@ def update_rank(names, ranks, divs, ids):
 
 def display_roster(names, ranks, divs, ids):
     print("/n  Crew Roster   ")
-    print(f"{'Name':<20}{'ID':<25}{'Rank':>15}{'Division'}")
+    print(f"{'ID':<20}{'Name':<25}{'Rank':>30}{'Division':>45}")
 
     for i in range(len(names)):
-        print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
+        print(f"{ids[i]:<20}{names[i]:<25}{ranks[i]:>30}{divs[i]:>45}")
 
 def search_crew(names, ranks, divs, ids):
     term = input("Enter search term: ").lower()
@@ -139,12 +139,12 @@ def search_crew(names, ranks, divs, ids):
         print("No matches")
 
 def filter_by_division(names, ranks, divs, ids):
-    division = input("Enter division")
+    division = input("Enter division: ")
 
-    print(f"/n   Division Results   ")
+    print(f"   Division Results   ")
     found = False
 
-    for i in range(len(names)):
+    for i in range(len(divs)):
         if divs[i].lower() == division:
             print(f"{ids[i]} | {names[i]} | {ranks[i]}")
             found = True
@@ -162,7 +162,7 @@ def calculate_payroll(ranks):
     total = 0
     for rank in ranks:
         total += credits.get(rank, 0)
-    print(f"/nTotal fleet payroll: {total} credits")
+    print(f"Total fleet payroll: {total} credits")
     return total
 
 def count_senior_officers(ranks):
@@ -193,7 +193,7 @@ def main():
         elif choice == 7:
             filter_by_division(names, ranks, divs, ids)
         elif choice == 8:
-            calculate_payroll(names, ranks, divs, ids)
+            calculate_payroll(ranks)
         elif choice == 9:
             count = count_senior_officers(ranks)
             print(f"Captains and commanders: {count}")
