@@ -46,11 +46,11 @@ def run_system_monolith():
         elif opt == "3":
             rem = input("Name to remove: ")
         
-        if rem in n:
-            idx = n.index(rem)
-            n.pop(idx)
-            r.pop(idx)
-            d.pop(idx)
+            if rem in n:
+                idx = n.index(rem)
+                n.pop(idx)
+                r.pop(idx)
+                d.pop(idx)
             print("Removed.")
             
         elif opt == "4":
@@ -60,7 +60,7 @@ def run_system_monolith():
             for rank in r:
                 if rank == "Captain" or rank == "Commander": 
                     count += 1
-            print("High ranking officers: ") + str(count) 
+            print("High ranking officers: " + str(count))
             
         elif opt == "5":
             print("Shutting down.")
@@ -91,5 +91,4 @@ def run_system_monolith():
             break 
             
         print("End of cycle.")
-
 run_system_monolith()
