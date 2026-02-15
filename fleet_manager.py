@@ -110,7 +110,13 @@ def remove_member(names, ranks, divs, ids):
         ranks[index] = new_rank
         print("Rank updated")
 
-        
+    def display_roster(names, ranks, divs, ids):
+        print("/n  Crew Roster   ")
+        print(f"{'Name':<20}{'ID':<25}{'Rank':>15}{'Division'}")
+
+        for i in range(len(names)):
+            print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
+            
 
 
 
