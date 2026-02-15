@@ -97,46 +97,86 @@ def remove_member(names, ranks, divs, ids):
 
     print("Member removed")
 
-    def update_rank(names, ranks, divs, ids):
-        target_id = input("Enter crew ID: ")
+def update_rank(names, ranks, divs, ids):
+    target_id = input("Enter crew ID: ")
 
-        if target_id not in ids:
-            print("ID not found")
-            return
+    if target_id not in ids:
+        print("ID not found")
+        return
         
-        index = ids.index(target_id)
-        new_rank = input("Enter new rank: ")
+    index = ids.index(target_id)
+    new_rank = input("Enter new rank: ")
 
-        ranks[index] = new_rank
-        print("Rank updated")
+    ranks[index] = new_rank
+    print("Rank updated")
 
-    def display_roster(names, ranks, divs, ids):
-        print("/n  Crew Roster   ")
-        print(f"{'Name':<20}{'ID':<25}{'Rank':>15}{'Division'}")
+def display_roster(names, ranks, divs, ids):
+    print("/n  Crew Roster   ")
+    print(f"{'Name':<20}{'ID':<25}{'Rank':>15}{'Division'}")
 
-        for i in range(len(names)):
-            print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
+    for i in range(len(names)):
+        print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
 
-    def main():
-        names, ranks, divs, ids = init_database()
+def main():
+    names, ranks, divs, ids = init_database()
 
-        while True:
-            choice = display_menu()
+    while True:
+        choice = display_menu()
 
-            if choice == 1:
-                add_member(names, ranks, divs, ids)
-            elif choice == 2:
-                remove_member(names, ranks, divs, ids)
-            elif choice == 3:
-                update_rank(names, ranks, divs, ids)
-            elif choice == 4:
-                display_roster(names, ranks, divs, ids)
-            elif choice == 5:
-                print("Exiting")
-                break
-            else:
-                print("Choice not valid")
-    main()
+        if choice == 1:
+            add_member(names, ranks, divs, ids)
+        elif choice == 2:
+            remove_member(names, ranks, divs, ids)
+        elif choice == 3:
+            update_rank(names, ranks, divs, ids)
+        elif choice == 4:
+            display_roster(names, ranks, divs, ids)
+        elif choice == 5:
+            print("Exiting")
+            break
+        else:
+            print("Choice not valid")
+    
+main()
+
+def search_crew(names, ranks, divs, ids):
+    term = input("Enter search term: ").lower()
+    found = False
+
+    print("/n   Search Results    ")
+
+    for i in range(len(names)):
+        if (term in names[i].lower() or
+            term in ranks[i].lower() or
+            term in divs[i].lower() or
+            term in ids[i].lower()):
+
+            print(f"{ids[i]} | {names[i]} | {ranks[i]} | {divs[i]}")
+            found = True
+    if not found:
+        print("No matches")
+
+def filter_by_division(names, ranks, divs, ids):
+    division = input("Enter division")
+
+    print(f"/n   Division Results   ")
+    found = False
+
+    for i in range(len(names)):
+        if divs[i].lower() == division:
+            print(f"{ids[i]} | {names[i]} | {ranks[i]}")
+            found = True
+    if not found:
+        print("No crew members in division")
+
+
+
+
+
+
+
+
+
 
         
 
