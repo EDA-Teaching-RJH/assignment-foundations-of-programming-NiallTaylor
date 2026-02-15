@@ -49,7 +49,7 @@ def display_menu():
     print("8. Payroll Calculator")
     print("9. Senior officer count")
 
-    choice = input("Choose an option (1-5): ")
+    choice = input("Choose an option (1-9): ")
     if choice.isdigit():
         return int(choice)
     else:
@@ -120,7 +120,6 @@ def display_roster(names, ranks, divs, ids):
 
     for i in range(len(names)):
         print(f"{ids[i]:<25}{names[i]:<20}{ranks[i]:>15}{divs[i]}")
-
 
 def search_crew(names, ranks, divs, ids):
     term = input("Enter search term: ").lower()
